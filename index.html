@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Profil Mahasiswa - Moh. Firdaus (Daus)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 3 (sama seperti contoh dosen) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <!-- Font tambahan untuk mempercantik tampilan -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#2c3e75;
+      --primary-light:#3f52a3;
+      --accent:#f5a623;
+      --light-bg:#f4f6fb;
+      --dark-footer:#1b2440;
+    }
+
+    html{ scroll-behavior:smooth; }
+    section[id]{ scroll-margin-top:70px; }
+
+    body{
+      font-family:'Poppins', Arial, sans-serif;
+      padding-top:70px;
+      background:#ffffff;
+      color:#333;
+    }
+
+    /* ===== Navbar ===== */
+    .navbar-custom{
+      background:var(--primary);
+      border:none;
+      border-radius:0;
+    }
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-nav > li > a{
+      color:#fff;
+      font-weight:500;
+    }
+    .navbar-custom .navbar-nav > li > a:hover,
+    .navbar-custom .navbar-nav > li > a:focus{
+      color:var(--accent);
+      background:transparent;
+    }
+
+    /* ===== Hero / Home ===== */
+    .hero-section{
+      background:linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color:#fff;
+      padding:90px 15px 70px;
+      text-align:center;
+    }
+    .hero-section h1{
+      font-weight:700;
+      margin-bottom:10px;
+    }
+    .hero-section p.lead{
+      color:#e2e6f5;
+      max-width:600px;
+      margin:15px auto 30px;
+    }
+    .btn-accent{
+      background:var(--accent);
+      border-color:var(--accent);
+      color:#1b2440;
+      font-weight:600;
+    }
+    .btn-accent:hover{
+      background:#e0951a;
+      border-color:#e0951a;
+      color:#1b2440;
+    }
+
+    /* ===== Section umum ===== */
+    .section-block{
+      padding:60px 0;
+    }
+    .section-title{
+      font-weight:700;
+      color:var(--primary);
+      margin-bottom:30px;
+    }
+
+    /* ===== Panel / Card ===== */
+    .panel-card{
+      border:none;
+      border-radius:8px;
+      box-shadow:0 2px 12px rgba(0,0,0,0.08);
+      transition:box-shadow .2s ease;
+    }
+    .panel-card:hover{
+      box-shadow:0 4px 18px rgba(0,0,0,0.12);
+    }
+    .panel-card .panel-heading{
+      background:var(--primary);
+      color:#fff;
+      font-weight:600;
+      border-radius:8px 8px 0 0;
+    }
+
+    /* ===== Kartu Profil (Sidebar) ===== */
+    .profile-avatar{
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      border:4px solid var(--accent);
+      object-fit:cover;
+      margin-bottom:15px;
+    }
+    .biodata-list{
+      text-align:left;
+      list-style:none;
+      padding-left:0;
+      margin-top:15px;
+    }
+    .biodata-list li{
+      padding:6px 0;
+      border-bottom:1px dashed #e5e5e5;
+      font-size:13px;
+    }
+    .biodata-list li strong{
+      display:inline-block;
+      width:95px;
+      color:var(--primary);
+    }
+
+    .org-list{
+      list-style:none;
+      padding-left:0;
+      font-size:13px;
+      text-align:left;
+    }
+    .org-list li{
+      margin-bottom:10px;
+      padding-left:20px;
+      position:relative;
+    }
+    .org-list li .glyphicon{
+      position:absolute;
+      left:0;
+      top:2px;
+      color:var(--accent);
+      font-size:11px;
+    }
+    .org-list .org-role{
+      font-weight:600;
+      color:#333;
+    }
+    .org-list .org-place{
+      color:#888;
+      display:block;
+    }
+
+    /* ===== Tabel Mata Kuliah ===== */
+    .table-mk thead{
+      background:var(--primary);
+      color:#fff;
+    }
+    .table-mk tbody tr:hover{
+      background:#eef1fb;
+    }
+
+    /* ===== Kontak ===== */
+    .section-kontak{
+      background:var(--light-bg);
+    }
+    .kontak-icon{
+      width:60px;
+      height:60px;
+      line-height:60px;
+      border-radius:50%;
+      background:var(--primary);
+      color:#fff;
+      font-size:22px;
+      margin:0 auto 12px;
+    }
+
+    /* ===== Footer ===== */
+    footer{
+      background:var(--dark-footer);
+      color:#cfd3e6;
+      text-align:center;
+      padding:25px 15px;
+    }
+    footer small{
+      display:block;
+      margin-top:5px;
+      color:#8891b8;
+    }
+
+    /* Responsif: rapikan jarak antar kolom di layar kecil */
+    @media (max-width:767px){
+      .col-md-4{ margin-bottom:30px; }
+      .hero-section{ padding:70px 15px 50px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMenu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#home"><span class="glyphicon glyphicon-stats"></span> Moh. Firdaus</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarMenu">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#profil">Profil</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Home -->
+<section id="home" class="hero-section">
+  <div class="container">
+    <h1>Halo, Saya Moh. Firdaus (Daus) 👋</h1>
+    <p class="lead">Mahasiswa semester 5 Jurusan Statistika Fakultas MIPA Universitas Negeri Makassar, 
+        mau kenal aku lebih dalam? cek profil lengkap aku dibawah ini.</p>
+    <a href="#profil" class="btn btn-accent btn-lg">Lihat Profil Lengkap <span class="glyphicon glyphicon-arrow-down"></span></a>
+  </div>
+</section>
+
+<!-- Profil -->
+<section id="profil" class="section-block">
+  <div class="container">
+    <div class="row">
+
+      <!-- Sidebar -->
+      <div class="col-md-4">
+        <div class="panel panel-default panel-card text-center">
+          <div class="panel-body">
+            <img src="C:\Users\nurfi\Downloads\WhatsApp Image 2025-11-17 at 18.49.01.jpeg"
+                 class="profile-avatar" alt="Foto Moh. Firdaus">
+            <h3 style="margin-top:0;">Moh. Firdaus</h3>
+            <p class="text-muted">Daus &bull; Mahasiswa Statistika</p>
+
+            <ul class="biodata-list">
+              <li><strong>NIM</strong> : 240112501023</li>
+              <li><strong>Jurusan</strong> : Statistika</li>
+              <li><strong>Fakultas</strong> : MIPA</li>
+              <li><strong>Universitas</strong> : Universitas Negeri Makassar</li>
+              <li><strong>Semester</strong> : 5</li>
+              <li><strong>IPK</strong> : <span class="label label-warning">3.90</span></li>
+              <li><strong>Alamat</strong> : <span class="label label-primary">Perumahan Puri Indah 2, Kel. Barombong</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel panel-default panel-card" style="margin-top:20px;">
+          <div class="panel-heading">Pengalaman Organisasi</div>
+          <div class="panel-body">
+            <ul class="org-list">
+              <li>
+                <span class="glyphicon glyphicon-ok"></span>
+                <span class="org-role">Staf Bidang Sosial &amp; Komunikasi</span>
+                <span class="org-place">HMJ Statistika FMIPA UNM Tahun 2026</span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-ok"></span>
+                <span class="org-role">Koordinator Deputi Public Relation</span>
+                <span class="org-place">GenBI Komisariat UNM Tahun 2026</span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-ok"></span>
+                <span class="org-role">Ketua Panitia Aksi Nyata Ilmiah Mahasiswa IX (ANALISIS IX) Tahun 2026</span>
+                <span class="org-place">HMJ Statistika FMIPA UNM Tahun 2026</span>
+              </li>
+              <li>
+                <span class="glyphicon glyphicon-ok"></span>
+                <span class="org-role">Anggota Seksi Acara Olympic of Statistics (OLS) Tahun 2025</span>
+                <span class="org-place">HMPS Statistika FMIPA UNM Tahun 2025</span>
+              </li>
+               <li>
+                <span class="glyphicon glyphicon-ok"></span>
+                <span class="org-role">Sekretaris Ambalan La Pottobune Maraja Scout</span>
+                <span class="org-place">Pramuka MAN 3 Bone Tahun 2022-2023</span>
+              </li>
+               <li>
+                <span class="glyphicon glyphicon-ok"></span>
+                <span class="org-role">Anggota Pasukan 8 Paskibra Kec. Lappariaja</span>
+                <span class="org-place">Paskibra MAN 3 Bone Tahun 2023</span>
+              </li>
+               <li>
+                <span class="glyphicon glyphicon-ok"></span>
+                <span class="org-role">Anggota Sanggar Seni MAN 3 Bone</span>
+                <span class="org-place">Sanggar Seni MAN 3 Bone Tahun 2022-2023</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Konten Utama -->
+      <div class="col-md-8">
+
+        <!-- Alert sukses -->
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong><span class="glyphicon glyphicon-ok-circle"></span> Selamat datang di website saya!</strong>
+        </div>
+
+        <!-- Tentang Saya -->
+        <div class="panel panel-default panel-card">
+          <div class="panel-heading">Tentang Saya</div>
+          <div class="panel-body">
+            <p>
+              Saya adalah mahasiswa Jurusan Statistika, FMIPA, Universitas Negeri
+              Makassar, yang saat ini menempuh semester 5. Saya tertarik mengembangkan diri
+              di bidang <strong>data analyst</strong> dengan memanfaatkan teknologi
+              informasi, mulai dari pengembangan <em>website</em> hingga
+              <em>Artificial Intelligence</em> (AI). Selain itu, saya juga senang membuat desain 
+              visual seperti infografis dan konten untuk Instagram, TikTok, dan YouTube.
+            </p>
+            <p>
+              Di luar akademik, saya aktif berorganisasi dan terlibat dalam kegiatan
+              pengabdian masyarakat yang menyentuh isu sosial dan lingkungan langsung ke masyarakat. 
+              Melalui halaman ini, saya ingin membagikan sedikit gambaran tentang diri saya,
+              aktivitas perkuliahan, dan pengalaman organisasi yang sedang saya jalani.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tabel Mata Kuliah -->
+        <div class="panel panel-default panel-card">
+          <div class="panel-heading">Mata Kuliah Semester Ini</div>
+          <div class="panel-body">
+            <table class="table table-bordered table-hover table-mk">
+              <thead>
+                <tr>
+                  <th>Kode</th>
+                  <th>Nama Mata Kuliah</th>
+                  <th>Kelas</th>
+                  <th class="text-center">SKS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>20A72C306</td>
+                  <td>Teori Reliabilitas</td>
+                  <td>03</td>
+                  <td class="text-center">2</td>
+                </tr>
+                <tr>
+                  <td>20A72C501</td>
+                  <td>Model Linier</td>
+                  <td>04</td>
+                  <td class="text-center">3</td>
+                </tr>
+                <tr>
+                  <td>20A72C502</td>
+                  <td>Rancangan Percobaan</td>
+                  <td>03</td>
+                  <td class="text-center">3</td>
+                </tr>
+                <tr>
+                  <td>20A72C503</td>
+                  <td>Statistika Peubah Banyak I</td>
+                  <td>03</td>
+                  <td class="text-center">2</td>
+                </tr>
+                <tr>
+                  <td>20A72C507</td>
+                  <td>Data Mining</td>
+                  <td>01</td>
+                  <td class="text-center">3</td>
+                </tr>
+                 <tr>
+                  <td>20A72C703</td>
+                  <td>Regresi Nonparametrik</td>
+                  <td>02</td>
+                  <td class="text-center">3</td>
+                </tr>
+                 <tr>
+                  <td>20A72C704</td>
+                  <td>Statistika Terapan Bisnis</td>
+                  <td>02</td>
+                  <td class="text-center">2</td>
+                </tr>
+                 <tr>
+                  <td>20A72C706</td>
+                  <td>Rancangan WEB</td>
+                  <td>02</td>
+                  <td class="text-center">3</td>
+                </tr>
+                 <tr>
+                  <td>20A72C708</td>
+                  <td>Resampling Methods</td>
+                  <td>01</td>
+                  <td class="text-center">2</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="3" class="text-right">Total SKS</th>
+                  <th class="text-center"><span class="label label-primary">24</span></th>
+                </tr>
+              </tfoot>
+            </table>
+            <p class="text-muted" style="font-size:12px; margin-bottom:0;">
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /col-md-8 -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+</section>
+
+<!-- Kontak -->
+<section id="kontak" class="section-block section-kontak">
+  <div class="container text-center">
+    <h2 class="section-title">Hubungi Saya</h2>
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="kontak-icon"><span class="glyphicon glyphicon-envelope"></span></div>
+        <p><strong>Email</strong><br>
+          <a href="mailto:muhammadfirdaus2720@gmail.com">muhammadfirdaus2720@gmail.com</a>
+        </p>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="kontak-icon"><span class="glyphicon glyphicon-earphone"></span></div>
+        <p><strong>WhatsApp</strong><br>
+          <a href="https://wa.me/6285341850867" target="_blank" rel="noopener">+62 853-4185-0867</a>
+        </p>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="kontak-icon"><span class="glyphicon glyphicon-camera"></span></div>
+        <p><strong>Instagram</strong><br>
+          <a href="https://www.instagram.com/_mhmmd_frds/" target="_blank" rel="noopener">@_mhmmd_frds</a>
+        </p>
+      </div>
+    </div>
+    <a href="mailto:muhammadfirdaus2720@gmail.com" class="btn btn-lg" style="background:var(--primary); color:#fff; margin-top:10px;">
+      <span class="glyphicon glyphicon-send"></span> Kirim Pesan
+    </a>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer>
+  &copy; 2026 | Moh. Firdaus - NIM: 240112501023
+  <small>Statistika, FMIPA, Universitas Negeri Makassar &bull; Tugas Rancangan Web - Bootstrap 3</small>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
